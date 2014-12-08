@@ -1,0 +1,11 @@
+{
+    "exe": "adaptor.py", 
+    "protocol": "usb", 
+    "name": "Temper1", 
+    "device_resource": "/api/bridge/v1/device/42/", 
+    "url": "https://github.com/ContinuumBridge/temper1/archive/v0.0.1.tar.gz", 
+    "version": "0.0.1", 
+    "provider": "ContinuumBridge", 
+    "adaptor_resource": "/api/bridge/v1/adaptor/36/", 
+    "description": "Adaptor for Temper1 USB temperature sensor"
+}
