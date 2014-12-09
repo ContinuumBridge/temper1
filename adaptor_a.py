@@ -5,7 +5,7 @@
 # Proprietary and confidential
 # Written by Peter Claydon
 #
-ModuleName               = "temperl"
+ModuleName               = "temper1"
 SENSOR_POLL_INTERVAL     = 30      # How often to request sensor values
 
 import sys
@@ -55,12 +55,12 @@ class Adaptor(CbAdaptor):
     def pollSensorThread(self):
         # Called in thread
         try:
-            t1 = subprocess.check_output(["temper-poll", "-q", "-c"])
+            t1 = subprocess.check_output(["/usr/local/bin/temper-poll", "-q", "-c"])
+            t = float(t1)
+            reactor.callFromThread(self.sendcharacteristic, "temperature", t, time.time())
         except Exception as ex:
             logging.warning('%s pollSensorTread. Failed to run temper-poll', ModuleName)
             logging.warning("%s Exception: %s %s", ModuleName, type(ex), str(ex.args))
-        t = float(t1)
-        reactor.callFromThread(self.sendcharacteristic("temperature", t, time.time())
 
     def pollSensor(self):
         reactor.callInThread(self.pollSensorThread)
